@@ -5,7 +5,6 @@
   <meta charset="utf-8" />
   <title>聚是一团火，散是满天星 | 江苏省木渎高级中学22届7班毕业去向图</title>
 
-  <!-- 引入刚刚下载的 ECharts 文件 和 jquery -->
   <script type="text/javascript" src="https://registry.npmmirror.com/echarts/3.8.0/files/dist/echarts.min.js"></script>
   <script type="text/javascript" src="https://registry.npmmirror.com/jquery/3.7.1/files/dist/jquery.min.js"></script>
   <style>
@@ -61,21 +60,6 @@
     var myChart = echarts.init(document.getElementById('chart-panel'));
     // 指定图表的配置项和数据
     var option = {};
-
-    //=============== start ===============//
-    /**
-     * 🚨🚨非常重要🚨🚨
-     * 下面是 网站左侧代码，核心代码
-     */
-    // 秋雁南飞：
-    // 此版本通过设置geoindex && seriesIndex: [1] 属性来实现geo和map共存，来达到hover散点和区域显示tooltip的效果
-    // 默认情况下，map series 会自己生成内部专用的 geo 组件。但是也可以用这个 geoIndex 指定一个 geo 组件。这样的话，map 和 其他 series（例如散点图）就可以共享一个 geo 组件了。并且，geo 组件的颜色也可以被这个 map series 控制，从而用 visualMap 来更改。
-    // 当设定了 geoIndex 后，series-map.map 属性，以及 series-map.itemStyle 等样式配置不再起作用，而是采用 geo 中的相应属性。
-    // http://echarts.baidu.com/option.html#series-map.geoIndex
-    // 并且加了pin气泡图标以示数值大小
-    // // 全局变量区:参考江西绿色金融（谢谢：本来想用闭包实现接口数据调用，没时间了）
-
-    // 本图作者：参考秋雁南飞的《投票统计》一图，网址：http://gallery.echartsjs.com/editor.html?c=xrJU-aE-LG
     var name_title = "江苏省木渎高级中学22届7班毕业去向图"
     var subname = 'Deployed by AMagicPear'
     var nameColor = "#000"
@@ -84,72 +68,57 @@
     var name_fontSize = 18
     var mapName = 'china'
     var data = [
-      { name: "北京", value: 177 },
-      { name: "天津", value: 42 },
-      { name: "河北", value: 102 },
-      { name: "山西", value: 81 },
-      { name: "内蒙古", value: 47 },
-      { name: "辽宁", value: 67 },
-      { name: "吉林", value: 82 },
-      { name: "黑龙江", value: 66 },
-      { name: "上海", value: 24 },
-      { name: "江苏", value: 92 },
-      { name: "浙江", value: 114 },
-      { name: "安徽", value: 109 },
-      { name: "福建", value: 116 },
-      { name: "江西", value: 91 },
-      { name: "山东", value: 119 },
-      { name: "河南", value: 137 },
-      { name: "湖北", value: 116 },
-      { name: "湖南", value: 114 },
-      { name: "重庆", value: 91 },
-      { name: "四川", value: 125 },
-      { name: "贵州", value: 62 },
-      { name: "云南", value: 83 },
-      { name: "西藏", value: 9 },
-      { name: "陕西", value: 80 },
-      { name: "甘肃", value: 56 },
-      { name: "青海", value: 10 },
-      { name: "宁夏", value: 18 },
-      { name: "新疆", value: 67 },
-      { name: "广东", value: 123 },
-      { name: "广西", value: 59 },
-      { name: "海南", value: 14 },
+      { name: "江苏", value: 41 },
+      { name: "辽宁", value: 1 },
+      { name: "吉林", value: 2 },
+      { name: "陕西", value: 2 },
+      { name: "北京", value: 1 },
+      { name: "四川", value: 1 },
+      { name: "重庆", value: 1 },
+      { name: "上海", value: 2 },
+      { name: "福建", value: 1 },
     ];
 
     var geoCoordMap = {};
     var toolTipData = [
-      { name: "北京", value: [{ name: "文科", value: 95 }, { name: "理科", value: 82 }] },
-      { name: "天津", value: [{ name: "文科", value: 22 }, { name: "理科", value: 20 }] },
-      { name: "河北", value: [{ name: "文科", value: 60 }, { name: "理科", value: 42 }] },
-      { name: "山西", value: [{ name: "文科", value: 40 }, { name: "理科", value: 41 }] },
-      { name: "内蒙古", value: [{ name: "文科", value: 23 }, { name: "理科", value: 24 }] },
-      { name: "辽宁", value: [{ name: "文科", value: 39 }, { name: "理科", value: 28 }] },
-      { name: "吉林", value: [{ name: "文科", value: 41 }, { name: "理科", value: 41 }] },
-      { name: "黑龙江", value: [{ name: "文科", value: 35 }, { name: "理科", value: 31 }] },
-      { name: "上海", value: [{ name: "文科", value: 12 }, { name: "理科", value: 12 }] },
-      { name: "江苏", value: [{ name: "文科", value: 47 }, { name: "理科", value: 45 }] },
-      { name: "浙江", value: [{ name: "文科", value: 57 }, { name: "理科", value: 57 }] },
-      { name: "安徽", value: [{ name: "文科", value: 57 }, { name: "理科", value: 52 }] },
-      { name: "福建", value: [{ name: "文科", value: 59 }, { name: "理科", value: 57 }] },
-      { name: "江西", value: [{ name: "文科", value: 49 }, { name: "理科", value: 42 }] },
-      { name: "山东", value: [{ name: "文科", value: 67 }, { name: "理科", value: 52 }] },
-      { name: "河南", value: [{ name: "文科", value: 69 }, { name: "理科", value: 68 }] },
-      { name: "湖北", value: [{ name: "文科", value: 60 }, { name: "理科", value: 56 }] },
-      { name: "湖南", value: [{ name: "文科", value: 62 }, { name: "理科", value: 52 }] },
-      { name: "重庆", value: [{ name: "文科", value: 47 }, { name: "理科", value: 44 }] },
-      { name: "四川", value: [{ name: "文科", value: 65 }, { name: "理科", value: 60 }] },
-      { name: "贵州", value: [{ name: "文科", value: 32 }, { name: "理科", value: 30 }] },
-      { name: "云南", value: [{ name: "文科", value: 42 }, { name: "理科", value: 41 }] },
-      { name: "西藏", value: [{ name: "文科", value: 5 }, { name: "理科", value: 4 }] },
-      { name: "陕西", value: [{ name: "文科", value: 38 }, { name: "理科", value: 42 }] },
-      { name: "甘肃", value: [{ name: "文科", value: 28 }, { name: "理科", value: 28 }] },
-      { name: "青海", value: [{ name: "文科", value: 5 }, { name: "理科", value: 5 }] },
-      { name: "宁夏", value: [{ name: "文科", value: 10 }, { name: "理科", value: 8 }] },
-      { name: "新疆", value: [{ name: "文科", value: 36 }, { name: "理科", value: 31 }] },
-      { name: "广东", value: [{ name: "文科", value: 63 }, { name: "理科", value: 60 }] },
-      { name: "广西", value: [{ name: "文科", value: 29 }, { name: "理科", value: 30 }] },
-      { name: "海南", value: [{ name: "文科", value: 8 }, { name: "理科", value: 6 }] },
+      { name: "北京", value: [{ name: "中央财经大学", value: "赵晨曦" }] },
+      {
+        name: "江苏",
+        value: [
+          { name: "南京大学", value: "王俊杰" },
+          { name: "东南大学", value: "王佳敏 钱佳裕" },
+          { name: "南京师范大学", value: "朱熙晴 顾束逸佳 李泽楷 刘欣" },
+          { name: "南京林业大学", value: "朱徐杰 鱼家乐" },
+          { name: "南京信息工程大学", value: "赵乐 费心阳 杭芫 曹玉豪" },
+          { name: "南京邮电大学", value: "黄灿 沈立" },
+          { name: "南京医科大学", value: "李雨桐 徐子朝 秦子才 王培荣" },
+          { name: "南京财经大学", value: "邢莹 杨绮洵" },
+          { name: "河海大学", value: "王劲舟" },
+          { name: "苏州大学", value: "黄欣妍 张程程 吴溢乐 薛连涛" },
+          { name: "苏州科技大学", value: "陆霄 潘研" },
+          { name: "江南大学", value: "孔维凯 陶琳" },
+          { name: "中国矿业大学", value: "潘星恒" },
+          { name: "徐州医科大学", value: "颜红霞" },
+          { name: "南京审计大学", value: "周昰有 周启新" },
+          { name: "江苏警官学院", value: "倪子衡" },
+          { name: "江苏师范大学", value: "沈琪" },
+          { name: "西交利物浦大学", value: "沈艺" },
+          { name: "常州大学", value: "戚一苇" },
+          { name: "扬州大学", value: "庄薛卉 徐子言" },
+          { name: "常熟理工学院", value: "金宁一" }
+        ]
+      },
+      { name: "辽宁", value: [{ name: "东北大学", value: "胡文波" }] },
+      { name: "吉林", value: [{ name: "吉林大学", value: "程炳翔 侯心怡" }] },
+      { name: "陕西", value: [{ name: "西安交通大学", value: "朱天杨 包皖暄" }] },
+      { name: "四川", value: [{ name: "四川大学", value: "席颖" }] },
+      { name: "重庆", value: [{ name: "重庆大学", value: "高李姝缘" }] },
+      { name: "福建", value: [{ name: "厦门大学", value: "沙宇轩" }] },
+      {
+        name: "上海", value: [{ name: "上海健康医学院", value: "王宇鑫" },
+        { name: "上海政法学院", value: "伍琪" }
+        ]
+      },
     ];
 
     /*获取地图数据*/
@@ -205,33 +174,18 @@
       tooltip: {
         trigger: 'item',
         formatter: function (params) {
-          if (typeof (params.value)[2] == "undefined") {
-            var toolTiphtml = ''
-            for (var i = 0; i < toolTipData.length; i++) {
-              if (params.name == toolTipData[i].name) {
-                toolTiphtml += toolTipData[i].name + ':<br>'
-                for (var j = 0; j < toolTipData[i].value.length; j++) {
-                  toolTiphtml += toolTipData[i].value[j].name + ':' + toolTipData[i].value[j].value + "<br>"
-                }
+          var toolTiphtml = '';
+          for (var i = 0; i < toolTipData.length; i++) {
+            if (params.name == toolTipData[i].name) {
+              toolTiphtml += `<strong>${toolTipData[i].name}</strong><br>`;
+              for (var j = 0; j < toolTipData[i].value.length; j++) {
+                toolTiphtml += toolTipData[i].value[j].name + '：' + toolTipData[i].value[j].value + "<br>";
               }
             }
-            console.log(toolTiphtml)
-            // console.log(convertData(data))
-            return toolTiphtml;
-          } else {
-            var toolTiphtml = ''
-            for (var i = 0; i < toolTipData.length; i++) {
-              if (params.name == toolTipData[i].name) {
-                toolTiphtml += toolTipData[i].name + ':<br>'
-                for (var j = 0; j < toolTipData[i].value.length; j++) {
-                  toolTiphtml += toolTipData[i].value[j].name + ':' + toolTipData[i].value[j].value + "<br>"
-                }
-              }
-            }
-            console.log(toolTiphtml)
-            // console.log(convertData(data))
-            return toolTiphtml;
           }
+          console.log(toolTiphtml);
+          // console.log(convertData(data))
+          return toolTiphtml;
         }
       },
       // legend: {
@@ -428,7 +382,7 @@
     }
     window.addEventListener('resize', myChart.resize);
   </script>
-    <script src="https://giscus.app/client.js" data-repo="amagicpear/Graduation-Destination-Map"
+  <script src="https://giscus.app/client.js" data-repo="amagicpear/Graduation-Destination-Map"
     data-repo-id="R_kgDONPHlSw" data-category="General" data-category-id="DIC_kwDONPHlS84CkQU1" data-mapping="pathname"
     data-strict="0" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="top"
     data-theme="preferred_color_scheme" data-lang="zh-CN" data-loading="lazy" crossorigin="anonymous" async>
