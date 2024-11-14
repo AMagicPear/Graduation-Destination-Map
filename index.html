@@ -47,11 +47,37 @@
       /* Bold */
       font-style: normal;
     }
+        /* 悬浮组件样式 */
+        .scroll-hint {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: rgba(0, 0, 0, 0.7);
+      color: white;
+      padding: 10px 20px;
+      border-radius: 5px;
+      font-family: 'AlibabaPuHuiTi', sans-serif;
+      font-size: 14px;
+      display: none;
+    }
   </style>
   <script type="text/javascript" src="./maps/china.js"></script>
 </head>
 
 <body>
+  <!-- 悬浮组件 -->
+  <div class="scroll-hint">下滑可进入评论区哦🤩！</div>
+  <script>
+    $(document).ready(function () {
+      // 显示悬浮组件
+      $('.scroll-hint').fadeIn();
+
+      // 当用户开始滚动时隐藏悬浮组件
+      $(window).scroll(function () {
+        $('.scroll-hint').fadeOut();
+      });
+    });
+  </script>
   <!-- 为 ECharts 准备一个定义了宽高的 DOM -->
   <div id="chart-panel" style="width: calc(100vw - 200px);height:calc(100vh - 200px); padding: 100px; margin: 0 auto;">
   </div>
